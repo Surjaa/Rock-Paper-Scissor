@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(180, 180, 180);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.game-container {
+    text-align: center;
+    background: whitesmoke;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 187, 201, 0.1);
+    max-width: 500px;
+    height: 250px;
+    width: 100%;
+}
+
+.choices button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.choices button:hover {
+    background-color: #4fa4ff;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.scoreboard {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+@media (max-width: 600px) {
+    .choices button {
+        width: calc(33.33% - 20px); /* Each button will take 1/3 of the container's width */
+        margin: 5px;
+    }
+}
+
+@media (max-width: 400px) {
+    .choices button {
+        width: calc(33.33% - 20px); /* Ensures buttons remain the same size */
+        font-size: 14px; /* Adjusted to keep it legible */
+        padding: 8px 16px; /* Slight reduction to fit smaller screens */
+    }
+
+    .result, .scoreboard {
+        font-size: 16px; /* Slightly smaller for better fit on small screens */
+    }
+}
