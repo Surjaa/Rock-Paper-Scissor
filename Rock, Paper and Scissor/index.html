@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <div class="game-container">
         <h1>Rock, Paper, Scissors</h1>
         <div class="choices">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
+            <button id="rock" ><i class="fas fa-hand-rock"></i></button>
+            <button id="paper"><i class="fa-solid fa-hand"></i></button>
+            <button id="scissors"><i class="fa-solid fa-hand-peace"></i></button>
         </div>
         <div class="result">
-            <p id="result-text">Make a choice to start the game.</p>
+            <p id="result-text"></p>
         </div>
         <div class="scoreboard">
             <p>Player Wins: <span id="player-score">0</span></p>
