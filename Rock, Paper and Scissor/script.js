@@ -1,4 +1,3 @@
-// This line sets up an event listener for when the entire HTML document has been loaded and parsed.
 document.addEventListener('DOMContentLoaded', () => {
 
     // An array holding the possible choices for the game.
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Checks if the combined scores of the player and computer reach the total points required to end the game.
             if ((playerScore + computerScore) === totalPointsToWin) {
                 // Announces the winner and resets the game.
-                announceWinner(playerScore > computerScore ? 'You' : 'Computer');
+                alert(`${playerScore > computerScore ? 'You' : 'Computer'} won the game!`);
                 resetGame();
             }
         });
@@ -72,17 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to announce the winner with an alert message.
-    function announceWinner(winner) {
-        alert(`${winner} has more points and won the game!`);
-    }
-
     // Function to reset the game by setting scores to 0 and updating the displayed scores and result text.
     function resetGame() {
         playerScore = 0;
         computerScore = 0;
         playerScoreText.textContent = playerScore;
         computerScoreText.textContent = computerScore;
-        resultText.textContent = '';
+        resultText.textContent = 'Make a choice to start the game.';
     }
 });
