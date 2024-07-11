@@ -1,82 +1,102 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // An array holding the possible choices for the game.
     const choices = ['rock', 'paper', 'scissors'];
-
-    // Selects all buttons that are children of elements with the 'choices' class.
-    const buttons = document.querySelectorAll('.choices button');
-
-    // Selects the element with the ID 'result-text' to display the result of each game round.
     const resultText = document.getElementById('result-text');
-
-    // Selects the elements with IDs 'player-score' and 'computer-score' to display the scores.
     const playerScoreText = document.getElementById('player-score');
     const computerScoreText = document.getElementById('computer-score');
+    const timerText = document.getElementById('timer-text');
+    const startButton = document.getElementById('start-button');
+    const videos = document.querySelectorAll('.choice-video');
 
-    // Initializes the scores of the player and the computer to 0.
     let playerScore = 0;
     let computerScore = 0;
-
-    // Defines the total points required to end the game.
+    let playerChoice = '';
     const totalPointsToWin = 10;
+    let timer;
 
-    // Loops through each button in the 'buttons' NodeList.
-    buttons.forEach(button => {
-        // Adds a click event listener to each button.
-        button.addEventListener('click', () => {
-            // The user's choice is determined by the button's ID.
-            const userChoice = button.id;
-            // The computer's choice is randomly selected from the 'choices' array.
-            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-            // Determines the result of the game round based on the user's and computer's choices.
-            const result = determineWinner(userChoice, computerChoice);
-
-            // Updates the scores based on the result.
-            if (result === 'You win!') {
-                playerScore++;
-            } else if (result === 'You lose!') {
-                computerScore++;
-            }
-
-            // Updates the displayed scores.
-            playerScoreText.textContent = playerScore;
-            computerScoreText.textContent = computerScore;
-            // Updates the result text to show what choices were made and the result of the round.
-            resultText.textContent = `You chose ${userChoice}, computer chose ${computerChoice}. ${result}`;
-
-            // Checks if the combined scores of the player and computer reach the total points required to end the game.
-            if ((playerScore + computerScore) === totalPointsToWin) {
-                // Announces the winner and resets the game.
-                alert(`${playerScore > computerScore ? 'You' : 'Computer'} won the game!`);
-                resetGame();
-            }
-        });
+    videos.forEach(video => {
+        video.playbackRate = 2; // Increase the playback rate to make the videos play faster
+        video.addEventListener('click', () => makeChoice(video.id));
     });
 
-    // Function to determine the winner based on the user's and computer's choices.
+    startButton.addEventListener('click', () => {
+        startButton.style.display = 'none'; // Hide the start button
+        setTimeout(startGame, 2000); // Wait for 2 seconds before starting the game
+    });
+
+    function startGame() {
+        playerScore = 0;
+        computerScore = 0;
+        updateScores();
+        nextRound();
+    }
+
+    function nextRound() {
+        playerChoice = '';
+        let timeLeft = 3;
+        timerText.textContent = `Timer: ${timeLeft}`;
+        timer = setInterval(() => {
+            timeLeft--;
+            timerText.textContent = `Timer: ${timeLeft}`;
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+                const result = determineWinner(playerChoice, computerChoice);
+
+                if (result === 'You win!') {
+                    playerScore++;
+                } else if (result === 'You lose!') {
+                    computerScore++;
+                }
+
+                updateScores();
+                resultText.textContent = `You chose ${playerChoice || 'nothing'}, computer chose ${computerChoice}. ${result}`;
+
+                if (playerScore + computerScore < totalPointsToWin) {
+                    setTimeout(nextRound, 2000);
+                } else {
+                    announceWinner(playerScore > computerScore ? 'You' : 'Computer');
+                    startButton.style.display = 'block'; // Show the start button again
+                }
+            }
+        }, 1000);
+    }
+
+    function makeChoice(choice) {
+        if (timer) {
+            playerChoice = choice;
+        }
+    }
+
     function determineWinner(userChoice, computerChoice) {
-        // If the choices are the same, it's a tie.
+        if (!userChoice) return 'You lose!';
         if (userChoice === computerChoice) {
             return 'It\'s a tie!';
-        // The user wins if their choice beats the computer's choice according to the rules of rock-paper-scissors.
         } else if (
             (userChoice === 'rock' && computerChoice === 'scissors') ||
             (userChoice === 'paper' && computerChoice === 'rock') ||
             (userChoice === 'scissors' && computerChoice === 'paper')
         ) {
             return 'You win!';
-        // Otherwise, the computer wins.
         } else {
             return 'You lose!';
         }
     }
 
-    // Function to reset the game by setting scores to 0 and updating the displayed scores and result text.
+    function announceWinner(winner) {
+        alert(`${winner} has more points and won the game!`);
+        resetGame();
+    }
+
     function resetGame() {
         playerScore = 0;
         computerScore = 0;
+        updateScores();
+        resultText.textContent = '';
+        timerText.textContent = 'Timer: 3';
+    }
+
+    function updateScores() {
         playerScoreText.textContent = playerScore;
         computerScoreText.textContent = computerScore;
-        resultText.textContent = 'Make a choice to start the game.';
     }
 });
