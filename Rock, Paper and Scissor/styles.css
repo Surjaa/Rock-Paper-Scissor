@@ -27,19 +27,15 @@ body {
     margin-top: 20px;
 }
 
-.choice-video {
-    width: 100px;
-    height: 100px;
+.choice-icon {
+    font-size: 100px; /* Adjust the size of the icons */
     cursor: pointer;
-    border-radius: 10px;
     transition: transform 0.3s ease;
-    mix-blend-mode: multiply;
 }
 
-.choice-video:hover {
+.choice-icon:hover {
     transform: scale(1.1);
-    box-shadow: 5px 5px 5px 5px rgb(206, 205, 205);
-    /* filter: drop-shadow(5px 5px 5px 5px rgb(167, 166, 166)); */
+    color: #007bff; /* Highlight color on hover */
 }
 
 .result, .scoreboard {
@@ -65,16 +61,14 @@ body {
 }
 
 @media (max-width: 600px) {
-    .choice-video {
-        width: 80px;
-        height: 80px;
+    .choice-icon {
+        font-size: 80px;
     }
 }
 
 @media (max-width: 400px) {
-    .choice-video {
-        width: 60px;
-        height: 60px;
+    .choice-icon {
+        font-size: 60px;
     }
 
     .result, .scoreboard {
