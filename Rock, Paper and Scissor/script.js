@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const computerScoreText = document.getElementById('computer-score');
     const timerText = document.getElementById('timer-text');
     const startButton = document.getElementById('start-button');
-    const videos = document.querySelectorAll('.choice-video');
+    const icons = document.querySelectorAll('.choice-icon');
 
     let playerScore = 0;
     let computerScore = 0;
@@ -13,9 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPointsToWin = 10;
     let timer;
 
-    videos.forEach(video => {
-        video.playbackRate = 2; // Increase the playback rate to make the videos play faster
-        video.addEventListener('click', () => makeChoice(video.id));
+    icons.forEach(icon => {
+        icon.addEventListener('click', () => makeChoice(icon.id));
     });
 
     startButton.addEventListener('click', () => {
