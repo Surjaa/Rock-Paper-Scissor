@@ -1,5 +1,5 @@
 body {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,13 +28,16 @@ body {
 }
 
 .choice-icon {
-    font-size: 100px; /* Adjust the size of the icons */
+    font-size: 80px; /* Adjust the size of the icons */
     cursor: pointer;
+    padding: 3%;
     transition: transform 0.3s ease;
+    filter: drop-shadow(10px 10px 10px rgb(111, 111, 111)); /* Apply a drop shadow directly to each icon */
 }
 
 .choice-icon:hover {
     transform: scale(1.1);
+    filter: drop-shadow(10px 10px 10px rgb(142, 141, 141)); /* Apply a drop shadow directly to each icon */
     color: #007bff; /* Highlight color on hover */
 }
 
