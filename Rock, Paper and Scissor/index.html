@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,18 +12,9 @@
         <h1>Rock, Paper, Scissors</h1>
         <button id="start-button">Start Game</button><br>
         <div class="choices">
-            <video id="rock" class="choice-video" width="100" height="100" autoplay loop muted onclick="makeChoice('rock')">
-                <source src="Rock.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="paper" class="choice-video" width="100" height="100" autoplay loop muted onclick="makeChoice('paper')">
-                <source src="Paper.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="scissors" class="choice-video" width="100" height="100" autoplay loop muted onclick="makeChoice('scissors')">
-                <source src="Scissors.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <i id="rock" class="fas fa-hand-rock choice-icon" onclick="makeChoice('rock')"></i>
+            <i id="paper" class="fas fa-hand-paper choice-icon" onclick="makeChoice('paper')"></i>
+            <i id="scissors" class="fas fa-hand-scissors choice-icon" onclick="makeChoice('scissors')"></i>
         </div><br>
         <div class="result">
             <p id="result-text"></p>
